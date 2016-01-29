@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -24,6 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $classes = DB::select('SELECT name, classnumber 
+            FROM `classes` 
+            WHERE char_length(classnumber)<=3 
+                  AND char_length(classnumber)>=1');
+        return view('home', ['classes' => $classes]);
     }
 }
