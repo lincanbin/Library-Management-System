@@ -59,17 +59,16 @@
           <div class="mdl-mega-footer--middle-section">
             <div class="mdl-mega-footer--drop-down-section">
               <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
-              <h1 class="mdl-mega-footer--heading">Features</h1>
+              <h1 class="mdl-mega-footer--heading">校内图书馆</h1>
               <ul class="mdl-mega-footer--link-list">
-                <li><a href="#">About</a></li>
-                <li><a href="#">Terms</a></li>
-                <li><a href="#">Partners</a></li>
-                <li><a href="#">Updates</a></li>
+                <li><a href="#">暨南大学图书馆</a></li>
+                <li><a href="#">暨南大学珠海校区图书馆</a></li>
+                <li><a href="#">暨南大学南校区图书馆</a></li>
               </ul>
             </div>
             <div class="mdl-mega-footer--drop-down-section">
               <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
-              <h1 class="mdl-mega-footer--heading">Details</h1>
+              <h1 class="mdl-mega-footer--heading">友情链接</h1>
               <ul class="mdl-mega-footer--link-list">
                 <li><a href="#">Spec</a></li>
                 <li><a href="#">Tools</a></li>
@@ -78,7 +77,7 @@
             </div>
             <div class="mdl-mega-footer--drop-down-section">
               <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
-              <h1 class="mdl-mega-footer--heading">Technology</h1>
+              <h1 class="mdl-mega-footer--heading">相关政策</h1>
               <ul class="mdl-mega-footer--link-list">
                 <li><a href="#">How it works</a></li>
                 <li><a href="#">Patterns</a></li>
@@ -89,7 +88,7 @@
             </div>
             <div class="mdl-mega-footer--drop-down-section">
               <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
-              <h1 class="mdl-mega-footer--heading">FAQ</h1>
+              <h1 class="mdl-mega-footer--heading">帮助中心</h1>
               <ul class="mdl-mega-footer--link-list">
                 <li><a href="#">Questions</a></li>
                 <li><a href="#">Answers</a></li>
@@ -99,12 +98,12 @@
           </div>
           <div class="mdl-mega-footer--bottom-section">
             <div class="mdl-logo">
-              More Information
+              Powered By © 2006-2016 林灿斌
             </div>
             <ul class="mdl-mega-footer--link-list">
-              <li><a href="https://developers.google.com/web/starter-kit/">Web Starter Kit</a></li>
-              <li><a href="#">Help</a></li>
-              <li><a href="#">Privacy and Terms</a></li>
+              <li><a href="https://github.com/lincanbin/Library-Management-System">Source Code</a></li>
+              <li><a href="http://weibo.com/lincanbin">Weibo</a></li>
+              <li><a href="https://github.com/lincanbin">GitHub</a></li>
             </ul>
           </div>
         </footer>

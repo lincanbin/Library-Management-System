@@ -2,10 +2,9 @@
 @section('title', '暨南大学珠海校区图书馆')
 @section('content')
 
-<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" style="padding: 5px;">
     @foreach($classes_tree as $key => $value)
         <a href="#{{ $key }}">
-
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
                 {{ $key }}&nbsp;{{ $classes_tree[$key][$key][$key][0] }}
             </button>
