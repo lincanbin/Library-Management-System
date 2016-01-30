@@ -27,6 +27,9 @@ html, body {
   margin: 0;
   padding: 0;
 }
+button {
+  margin: 0 4px 6px 0;
+}
 .mdl-container .mdl-layout__header-row {
   padding-left: 40px;
 }
@@ -260,4 +263,10 @@ html, body {
 }
 .mdl-container .mdl-menu__container {
   z-index: 99;
+}
+
+/* 重写表格样式 */
+.mdl-data-table{
+  margin: 0 auto; 
+  white-space: normal !important;
 }
