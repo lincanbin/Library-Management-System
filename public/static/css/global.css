@@ -28,7 +28,7 @@ html, body {
   padding: 0;
 }
 button {
-  margin: 0 4px 6px 0;
+  margin: 0 3px 6px 0;
 }
 .mdl-container .mdl-layout__header-row {
   padding-left: 40px;
@@ -128,9 +128,9 @@ button {
   margin-bottom: 48px;
 }
 .mdl-container section.section--center {
-  max-width: 860px;
+  max-width: 1280px;
 }
-.mdl-container #features section.section--center {
+.mdl-container #search_layout section.section--center {
   max-width: 620px;
 }
 .mdl-container section > header{
