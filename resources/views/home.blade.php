@@ -18,7 +18,7 @@
         <thead>
             <tr>
                 <th colspan="2" class="mdl-data-table__cell--non-numeric">
-                    <a href="/lib/{{ $keyword }}-1" name="{{ $keyword }}" target="_blank">
+                    <a href="/class/{{ $keyword }}/page/1" name="{{ $keyword }}" target="_blank">
                         <h4>
                         {{ $keyword }} &nbsp;{{ $classes_tree[$keyword][$keyword][$keyword][0] }}
                         </h4>
@@ -31,7 +31,7 @@
                 @if($key != $keyword)
                     <tr>
                         <td class="mdl-layout--large-screen-only mdl-data-table__cell--non-numeric" style="width: 20%;">
-                            <a href="/lib/{{ $key }}-1" target="_blank">
+                            <a href="/class/{{ $key }}/page/1" target="_blank">
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
                                 {{ $key }}&nbsp;
                                 @if( !empty($classes_tree[$keyword][$key][$key][0]) )
@@ -43,7 +43,7 @@
                         <td class="mdl-data-table__cell--non-numeric">
                         @foreach($val as $k => $v)
                             @if( $k!=$key )
-                                <a href="/lib/{{ $k }}-1" target="_blank">
+                                <a href="/class/{{ $k }}/page/1" target="_blank">
                                     <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
                                         {{ $k }}&nbsp;{{ $v[0] }}
                                     </button>
