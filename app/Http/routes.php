@@ -33,4 +33,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/', 'HomeController@index');
 
     Route::get('/class/{class_name}/page/{page}', 'SearchController@category');
+
+    Route::get('/search/{keyword}/page/{page}', 'SearchController@search');
 });
