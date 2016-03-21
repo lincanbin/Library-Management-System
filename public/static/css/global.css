@@ -128,7 +128,7 @@ button {
   margin-bottom: 48px;
 }
 .mdl-container section.section--center {
-  max-width: 1280px;
+  max-width: 1200px;
 }
 .mdl-container #search_layout section.section--center {
   max-width: 620px;
@@ -269,4 +269,15 @@ button {
 .mdl-data-table{
   margin: 0 auto; 
   white-space: normal !important;
+}
+
+/* 搜索结果栏的卡片样式 */
+.mdl-card-square.mdl-card {
+  width: 300px;
+  height: 550px;
+  margin: 0 auto;
+}
+.mdl-card-square > .mdl-card__title {
+  height: 320px;
+  color: #fff;
 }
