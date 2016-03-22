@@ -26,7 +26,7 @@
                     </p>
                   </div>
                   <div class="mdl-card__actions mdl-card--border">
-                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/book/{{ $value->id }}">
                       View Detail
                     </a>
                   </div>
