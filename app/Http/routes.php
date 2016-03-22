@@ -35,4 +35,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/class/{class_name}/page/{page}', 'SearchController@category');
 
     Route::get('/search/{keyword}/page/{page}', 'SearchController@search');
+
+    Route::resource('book', 'BookController',
+                ['only' => ['show']]);
 });
