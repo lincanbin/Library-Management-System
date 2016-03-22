@@ -274,7 +274,7 @@ button {
 /* 搜索结果栏的卡片样式 */
 .mdl-card-square.mdl-card {
   width: 300px;
-  height: 550px;
+  height: auto;
   margin: 0 auto;
 }
 .mdl-card-square > .mdl-card__title {
