@@ -26,15 +26,13 @@
           <a href="{{ url('/') }}#main" class="mdl-layout__tab is-active">首页</a>
           <a href="#search_layout" class="mdl-layout__tab">搜索</a>
         @if (Auth::guest())
-            <a href="{{ url('/login') }}" class="mdl-layout__tab">登录</a>
-            <a href="{{ url('/register') }}" class="mdl-layout__tab">注册</a>
+            <a href="#login_layout" class="mdl-layout__tab">登录</a>
+            <a href="#register_layout" class="mdl-layout__tab">注册</a>
         @else
             <a href="#main" class="mdl-layout__tab"> {{ Auth::user()->name }} </a>
             <a href="{{ url('/logout') }}" class="mdl-layout__tab">退出</a>
         @endif
-          <a href="#features" class="mdl-layout__tab">Details</a>
-          <a href="#features" class="mdl-layout__tab">Technology</a>
-          <a href="#features" class="mdl-layout__tab">FAQ</a>
+          <a href="#help" class="mdl-layout__tab">帮助</a>
           <a href="#search_layout">
               <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="search">
                 <i class="material-icons" role="presentation">search</i>
@@ -55,6 +53,82 @@
             </div>
           </section>
         </div>
+      @if (Auth::guest())
+        <div class="mdl-layout__tab-panel" id="login_layout">
+            <section class="section--center mdl-grid mdl-grid--no-spacing">
+            <div class="mdl-cell mdl-cell--12-col">
+              <h4>登录</h4>
+              <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                  {!! csrf_field() !!}
+                  <p>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <label class="mdl-textfield__label">E-Mail Address</label>
+                        <input type="email" class="mdl-textfield__input" name="email" value="{{ old('email') }}">
+                    </div>
+                  <br />
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <label class="mdl-textfield__label">Password</label>
+                      <input type="password" class="mdl-textfield__input" name="password">
+                  </div>
+                  </p>
+                  <p>
+                      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
+                        <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" name="remember" checked>
+                        <span class="mdl-checkbox__label">记住登录状态</span>
+                      </label>
+                  </p>
+                  <p>
+                      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                          <i class="fa fa-btn fa-sign-in"></i>登录
+                      </button>
+                      <a class="btn btn-link" href="{{ url('/password/reset') }}">忘记密码？</a>
+                  </p>
+              </form>
+            </div>
+          </section>
+        </div>
+
+        <div class="mdl-layout__tab-panel" id="register_layout">
+            <section class="section--center mdl-grid mdl-grid--no-spacing">
+            <div class="mdl-cell mdl-cell--12-col">
+              <h4>注册</h4>
+              <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+                  {!! csrf_field() !!}
+                  <p>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <label class="mdl-textfield__label">Name</label>
+                        <input type="text" class="mdl-textfield__input" name="name" value="{{ old('name') }}">
+                    </div>
+                  </p>
+                  <p>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <label class="mdl-textfield__label">E-Mail Address</label>
+                      <input type="email" class="mdl-textfield__input" name="email" value="{{ old('email') }}">
+                  </div>
+                  </p>
+                  <p>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <label class="mdl-textfield__label">Password</label>
+                      <input type="password" class="mdl-textfield__input" name="password">
+                      </div>
+                  </div>
+                  </p>
+                  <p>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <label class="mdl-textfield__label">Confirm Password</label>
+                      <input type="password" class="mdl-textfield__input" name="password_confirmation">
+                  </div>
+                  </p>
+                  <p>
+                      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                          <i class="fa fa-btn fa-user"></i>注册
+                      </button>
+                  </p>
+              </form>
+            </div>
+          </section>
+        </div>
+      @endif
         <footer class="mdl-mega-footer">
           <div class="mdl-mega-footer--middle-section">
             <div class="mdl-mega-footer--drop-down-section">

@@ -130,7 +130,7 @@ button {
 .mdl-container section.section--center {
   max-width: 1200px;
 }
-.mdl-container #search_layout section.section--center {
+.mdl-container #search_layout section.section--center, .mdl-container #login_layout section.section--center, .mdl-container #register_layout section.section--center {
   max-width: 620px;
 }
 .mdl-container section > header{
