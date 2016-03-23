@@ -18,7 +18,11 @@
                   </div>
                   <div class="mdl-card__supporting-text">
                     <p>
-                        <input class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="{{ intval(($value->rating)*10) }}" tabindex="0" /><!--disabled="disabled"-->
+                        <div id="p1" class="mdl-progress mdl-js-progress is-upgraded" data-upgraded=",MaterialProgress"  style="width: 100%;">
+                            <div class="progressbar bar bar1" style="width: {{ intval(($value->rating)*10) }}%;"></div>
+                            <div class="bufferbar bar bar2" style="width: 100%;"></div>
+                            <div class="auxbar bar bar3" style="width: 0%;"></div>
+                        </div>
                         <br /><span class="mdl-badge" data-badge="{{ intval(($value->rating)*10) }}">Rating</span><br />
                         作  者：{{ $value->author }}<br />
                         出版社：{{ $value->publisher }}<br />
