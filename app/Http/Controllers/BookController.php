@@ -29,7 +29,7 @@ class BookController extends Controller
         if(!$book_info){
             exit('404');
         }
-        return var_dump($book_info);
-        //return view('book', ['book_info' => $book_info]);
+        //return var_dump($book_info);
+        return view('book', ['book_info' => $book_info]);
     }
 }
