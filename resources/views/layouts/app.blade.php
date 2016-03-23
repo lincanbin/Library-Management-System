@@ -49,7 +49,15 @@
             <section class="section--center mdl-grid mdl-grid--no-spacing">
             <div class="mdl-cell mdl-cell--12-col">
               <h4>搜索</h4>
-              这里准备放个搜索框
+              <p>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <input class="mdl-textfield__input" type="text" id="search_text">
+                  <label class="mdl-textfield__label" for="search_text">关键词</label>
+                </div>
+                <button onclick="window.location.href='/search/'+$('#search_text').val()+'/page/1';" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                  搜索
+                </button>
+              </p>
             </div>
           </section>
         </div>
