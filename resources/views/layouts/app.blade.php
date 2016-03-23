@@ -109,6 +109,7 @@
         </footer>
       </main>
     </div>
+    <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/material.min.js"></script>
   </body>
 {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
