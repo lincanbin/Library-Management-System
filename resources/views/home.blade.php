@@ -5,7 +5,7 @@
 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" style="padding: 5px;">
     @foreach($classes_tree as $key => $value)
         <a href="#{{ $key }}">
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="$('.book-category').hide();$('#{{ $key }}').show();">
                 {{ $key }}&nbsp;{{ $classes_tree[$key][$key][$key][0] }}
             </button>
         </a>
@@ -13,8 +13,8 @@
 </section>
 
 @foreach($classes_tree as $keyword => $value)
-<section class="section--center mdl-grid mdl-grid--no-spacing">
-    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%">
+<section class="section--center mdl-grid mdl-grid--no-spacing book-category" id="{{ $keyword }}" style="display: none;">
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
         <thead>
             <tr>
                 <th colspan="2" class="mdl-data-table__cell--non-numeric">
