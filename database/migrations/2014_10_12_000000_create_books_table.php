@@ -33,6 +33,8 @@ class CreateBooksTable extends Migration
             $table->mediumText('author_intro');
             $table->mediumText('summary');
             $table->mediumText('catalog');
+
+            $table->index('classnumber');
         });
     }
 
