@@ -48,11 +48,13 @@
                         @endforeach
                     </p>
                 </div>
+                @if (Auth::check())
                 <div class="mdl-card__actions mdl-card--border">
-                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/book/{{ $book_info->id }}">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="btn_borrow" onclick="$.post('/manage',{id : {{ $book_info->id }}},function(result){$('#btn_borrow').text('借阅成功，请等待图书管理员审核！');});">
                         我要借阅
                     </a>
                 </div>
+                @endif
             </div>
         </div>
         <div class="mdl-cell mdl-cell--8-col">
