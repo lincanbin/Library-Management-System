@@ -38,4 +38,7 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::resource('book', 'BookController',
                 ['only' => ['show']]);
+
+    Route::resource('manage', 'ManageController',
+                ['only' => ['index', 'store', 'update']]);
 });
