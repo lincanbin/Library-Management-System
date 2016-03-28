@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>
             @yield('title')
         </title>
@@ -321,14 +322,18 @@
         </footer>
         </main>
         </div>
-        <script src="/static/js/jquery.min.js">
-        </script>
-        <script src="/static/js/material.min.js">
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/material.min.js"></script>
+        <script type="text/javascript">
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            })
         </script>
     </body>
     {{--
-    <script src="{{ elixir('js/app.js') }}">
-    </script>
+    <script src="{{ elixir('js/app.js') }}"></script>
     --}}
 
 </html>
