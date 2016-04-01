@@ -26,7 +26,11 @@ class ManageController extends Controller
      */
     public function index()
     {
-        $records = DB::table('records')->orderBy('return_time')->get();
+        $records = DB::table('records')
+        ->leftJoin('users', 'users.id', '=', 'records.user_id')
+        ->leftJoin('books', 'books.id', '=', 'records.book_id')
+        ->orderBy('return_time')
+        ->get();
         return view('manage', ['records' => $records]);
     }
 
@@ -38,7 +42,7 @@ class ManageController extends Controller
                 'user_id' => intval(Auth::user()->id),
                 'book_id' => intval($request->input('id')),
                 'time' => $_SERVER['REQUEST_TIME'],
-                'return_time' => $_SERVER['REQUEST_TIME']+86400*30,
+                'return_time' => 0,
                 'enable' => 0//是否允许外借，默认为0，不允许
             ]);
             $result=[
