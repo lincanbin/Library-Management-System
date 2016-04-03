@@ -27,9 +27,10 @@ class ManageController extends Controller
     public function index()
     {
         $records = DB::table('records')
+        ->select('users.name as user_name', 'records.*', 'books.name as book_name')
         ->leftJoin('users', 'users.id', '=', 'records.user_id')
         ->leftJoin('books', 'books.id', '=', 'records.book_id')
-        ->orderBy('return_time')
+        ->orderBy('records.time')
         ->get();
         return view('manage', ['records' => $records]);
     }
@@ -61,6 +62,18 @@ class ManageController extends Controller
         DB::table('records')
             ->where('id', intval($id))
             ->update(['enable' => 1]);
+        $result=[
+            'status' => 1
+        ];
+        return json_encode($result);
+    }
+
+
+    public function destroy($id)
+    {
+        DB::table('records')
+            ->where('id', intval($id))
+            ->delete();
         $result=[
             'status' => 1
         ];
