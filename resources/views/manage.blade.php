@@ -51,13 +51,10 @@
 </section>
 
 <script type="text/javascript">
+    // 允许外借的按钮
     $("[name='enable_btn']").each(function(){
-      console.log($(this));
-      console.log(typeof($(this).attr('id').replace('enable-', '')));
-      console.log('/manage/'+$(this).attr('id').replace('enable-',''));
-      $(this).click(function(){
-        if(confirm('确定允许外接此书？')){
-          
+      $(this).click(function(event){
+        if(confirm('确定外借此书给当前用户？')){
           $.ajax({
                url: '/manage/' + $(this).attr('id').replace('enable-',''),
                type: 'PUT',
@@ -70,6 +67,31 @@
                   alert(result.status==1?'登记成功，请将书交与借书者。':'登记失败，请稍后重试！');
              }
           });
+        }else{
+          //阻止事件冒泡
+          event.stopPropagation();
+        }
+      });
+    });
+    // 归还图书的按钮
+    $("[name='return_btn']").each(function(){
+      $(this).click(function(event){
+        if(confirm('确定此书已归还？')){
+          $.ajax({
+               url: '/manage/' + $(this).attr('id').replace('return-',''),
+               type: 'PUT',
+               dataType: 'json',
+               data: {
+                  column: 'return_time',
+                  value: '1'
+             },
+             success: function(result) {
+                  alert(result.status==1?'登记成功，请尽快将此书入库。':'登记失败，请稍后重试！');
+             }
+          });
+        }else{
+          //阻止事件冒泡
+          event.stopPropagation();
         }
       });
     });
