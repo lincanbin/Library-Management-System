@@ -17,9 +17,11 @@
     @foreach($records as $record)
     <tr>
       <td>
+      @if( $record->enable == 0)
         <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="enable-{{ $record->id }}">
-          <input type="checkbox" id="enable-{{ $record->id }}" class="mdl-switch__input" {{ $record->enable==1?'checked="checked"':'' }}>
+          <input type="checkbox" id="enable-{{ $record->id }}" name="enable_btn" class="mdl-switch__input" {{ $record->enable==1?'checked="checked"':'' }}>
         </label>
+        @endif
       </td>
       <td class="mdl-data-table__cell--non-numeric">{{ $record->book_name }}</td>
       <td>{{ $record->user_name }}</td>
@@ -38,7 +40,7 @@
       <td>
       @if( $record->return_time == 0 && $record->enable == 1)
           <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="return-{{ $record->id }}">
-            <input type="checkbox" id="return-{{ $record->id }}" class="mdl-switch__input">
+            <input type="checkbox" id="return-{{ $record->id }}" name="return_btn" class="mdl-switch__input">
           </label>
       @endif
       </td>
@@ -47,4 +49,30 @@
   </tbody>
 </table>
 </section>
+
+<script type="text/javascript">
+    $("[name='enable_btn']").each(function(){
+      console.log($(this));
+      console.log(typeof($(this).attr('id').replace('enable-', '')));
+      console.log('/manage/'+$(this).attr('id').replace('enable-',''));
+      $(this).click(function(){
+        if(confirm('确定允许外接此书？')){
+          
+          $.ajax({
+               url: '/manage/' + $(this).attr('id').replace('enable-',''),
+               type: 'PUT',
+               dataType: 'json',
+               data: {
+                  column: 'enable',
+                  value: '1'
+             },
+             success: function(result) {
+                  alert(result.status==1?'登记成功，请将书交与借书者。':'登记失败，请稍后重试！');
+             }
+          });
+        }
+      });
+    });
+</script>
+
 @endsection
