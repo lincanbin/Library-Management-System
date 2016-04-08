@@ -44,7 +44,8 @@ class ManageController extends Controller
                 'book_id' => intval($request->input('id')),
                 'time' => $_SERVER['REQUEST_TIME'],
                 'return_time' => 0,
-                'enable' => 0//是否允许外借，默认为0，不允许
+                'enable' => 0,//是否允许外借，默认为0，不允许
+                'notified' => 0// 是否已发送即将逾期的提醒，默认为0，不发送
             ]);
             $result=[
                 'status' => 1
