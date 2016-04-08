@@ -32,6 +32,7 @@ class ManageController extends Controller
         ->leftJoin('books', 'books.id', '=', 'records.book_id')
         ->orderBy('records.time')
         ->get();
+        // TODO : 这里应当读取即将逾期的记录，然后发送邮件/短信通知。
         return view('manage', ['records' => $records]);
     }
 
@@ -63,14 +64,17 @@ class ManageController extends Controller
         $column = $request->input('column');;
         $value = $request->input('value');;
         if(!in_array($column, ['enable', 'notified', 'return_time']) || intval($value) == 0){
-            $result=[
+            $result = [
                 'status' => 0
             ];
         }else{
+            if($column == 'return_time'){
+                $value = $_SERVER['REQUEST_TIME'];
+            }
             DB::table('records')
                 ->where('id', intval($id))
                 ->update([$column => $value]);
-            $result=[
+            $result = [
                 'status' => 1
             ];
         }
