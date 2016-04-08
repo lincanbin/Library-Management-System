@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title', $book_info->name)
 @section('content')
+
 <section class="section--center mdl-grid mdl-grid--no-spacing">
     <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--4-col">
@@ -50,7 +51,7 @@
                 </div>
                 @if (Auth::check())
                 <div class="mdl-card__actions mdl-card--border">
-                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="btn_borrow" onclick="$.post('/manage',{id : {{ $book_info->id }}},function(result){$('#btn_borrow').text('借阅成功，请等待图书管理员审核！');});">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="btn_borrow" onclick="">
                         我要借阅
                     </a>
                 </div>
@@ -83,5 +84,16 @@
         </div>
     </div>
 </section>
-
+<script type="text/javascript">
+    $("#btn_borrow").click(function(){
+        if(confirm("确定要借阅此书吗？")){
+            $('#btn_borrow').text('Loading……');
+            $.post('/manage',{
+                id : {{ $book_info->id }}
+            },function(result){
+                $('#btn_borrow').text('已提交，请等待管理员审核！');
+            });
+        }
+    });
+</script>
 @endsection
