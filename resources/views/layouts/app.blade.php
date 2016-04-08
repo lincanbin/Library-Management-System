@@ -12,6 +12,15 @@
         <!-- Styles -->
         <link rel="stylesheet" href="/static/css/material.min.css">
         <link rel="stylesheet" href="/static/css/global.css">
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/material.min.js"></script>
+        <script type="text/javascript">
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            })
+        </script>
     </head>
     
     <body class="mdl-container mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
@@ -322,15 +331,6 @@
         </footer>
         </main>
         </div>
-        <script src="/static/js/jquery.min.js"></script>
-        <script src="/static/js/material.min.js"></script>
-        <script type="text/javascript">
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            })
-        </script>
     </body>
     {{--
     <script src="{{ elixir('js/app.js') }}"></script>
