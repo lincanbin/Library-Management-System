@@ -58,14 +58,22 @@ class ManageController extends Controller
         return json_encode($result);
     }
 
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        DB::table('records')
-            ->where('id', intval($id))
-            ->update(['enable' => 1]);
-        $result=[
-            'status' => 1
-        ];
+        $column = $request->input('column');;
+        $value = $request->input('value');;
+        if(!in_array($column, ['enable', 'notified', 'return_time']) || intval($value) == 0){
+            $result=[
+                'status' => 0
+            ];
+        }else{
+            DB::table('records')
+                ->where('id', intval($id))
+                ->update([$column => $value]);
+            $result=[
+                'status' => 1
+            ];
+        }
         return json_encode($result);
     }
 
