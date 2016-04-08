@@ -19,6 +19,7 @@ class CreateRecordsTable extends Migration
             $table->integer('time');
             $table->integer('return_time');
             $table->boolean('enable');
+            $table->boolean('notified');
 
             $table->index('user_id');
             $table->index('return_time');
