@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Mail;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,12 +28,24 @@ class ManageController extends Controller
     public function index()
     {
         $records = DB::table('records')
-        ->select('users.name as user_name', 'records.*', 'books.name as book_name')
+        ->select('users.name as user_name', 'users.email as user_email', 'records.*', 'books.name as book_name')
         ->leftJoin('users', 'users.id', '=', 'records.user_id')
         ->leftJoin('books', 'books.id', '=', 'records.book_id')
         ->orderBy('records.time')
         ->get();
         // TODO : 这里应当读取即将逾期的记录，然后发送邮件/短信通知。
+        foreach ($records as $key => $record) {
+           if (($record->time+86400*30) < time() && $record->notified == 0) {
+                Mail::send('emails.reminder', ['record' => $record], function ($m) use ($record) {
+                $m->from('carbon_forum@ourjnu.com', '暨南大学图书馆');
+
+                $m->to($record->user_email, $record->user_name)->subject($record->user_name . '，你在暨南大学图书馆借阅的《' . $record->book_name . '》即将逾期！');
+                });
+                DB::table('records')
+                ->where('id', intval($record->id))
+                ->update(['notified' => 1]);
+            }
+        }
         return view('manage', ['records' => $records]);
     }
 
