@@ -35,7 +35,7 @@ class ManageController extends Controller
         ->get();
         // TODO : 这里应当读取即将逾期的记录，然后发送邮件/短信通知。
         foreach ($records as $key => $record) {
-           if (($record->time+86400*30) < time() && $record->notified == 0) {
+           if ($record->return_time == 0 && ($record->time+86400*30) < time() && $record->notified == 0) {
                 Mail::send('emails.reminder', ['record' => $record], function ($m) use ($record) {
                 $m->from('carbon_forum@ourjnu.com', '暨南大学图书馆');
 
