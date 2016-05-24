@@ -28,14 +28,14 @@ class ManageController extends Controller
     public function index()
     {
         $records = DB::table('records')
-        ->select('users.name as user_name', 'users.email as user_email', 'records.*', 'books.name as book_name')
+        ->select('users.name as user_name', 'users.email as user_email', 'users.mobile as user_mobile', 'records.*', 'books.name as book_name')
         ->leftJoin('users', 'users.id', '=', 'records.user_id')
         ->leftJoin('books', 'books.id', '=', 'records.book_id')
         ->orderBy('records.time')
         ->get();
         // TODO : 这里应当读取即将逾期的记录，然后发送邮件/短信通知。
         foreach ($records as $key => $record) {
-           if ($record->return_time == 0 && ($record->time+86400*30) < time() && $record->notified == 0) {
+           if ($record->enable == 1 && $record->return_time == 0 && ($record->time+86400*30) < time() && $record->notified == 0) {
                 Mail::send('emails.reminder', ['record' => $record], function ($m) use ($record) {
                 $m->from('carbon_forum@ourjnu.com', '暨南大学图书馆');
 
