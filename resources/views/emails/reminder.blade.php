@@ -1,1 +1,1 @@
-{{ $record->user_name }}，你在暨南大学图书馆借阅的《{{ $record->book_name }}》即将逾期！
+{{ $record->user_name }}，你在暨南大学图书馆借阅的《{{ $record->book_name }}》即将于{{ date('Y-m-d', $record->time+86400*60) }}逾期！

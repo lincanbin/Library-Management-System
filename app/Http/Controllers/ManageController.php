@@ -35,12 +35,32 @@ class ManageController extends Controller
         ->get();
         // TODO : 这里应当读取即将逾期的记录，然后发送邮件/短信通知。
         foreach ($records as $key => $record) {
-           if ($record->enable == 1 && $record->return_time == 0 && ($record->time+86400*30) < time() && $record->notified == 0) {
-                Mail::send('emails.reminder', ['record' => $record], function ($m) use ($record) {
-                $m->from('carbon_forum@ourjnu.com', '暨南大学图书馆');
+           if ($record->enable == 1 && $record->return_time == 0 && ($record->time+86400*60) > time() && ($record->time+86400*50) < time() && $record->notified == 0) {
+                $msg_content = $record->user_name . '，你在暨南大学图书馆借阅的《' . $record->book_name . '》即将于' . date('Y-m-d', $record->time+86400*60) . '逾期！';
+                Mail::send('emails.reminder', ['record' => $record], function ($m) use ($record, $msg_content) {
+                    $m->from('carbon_forum@ourjnu.com', '暨南大学图书馆');
+                    $m->to($record->user_email, $record->user_name)->subject($msg_content);
+                 });
 
-                $m->to($record->user_email, $record->user_name)->subject($record->user_name . '，你在暨南大学图书馆借阅的《' . $record->book_name . '》即将逾期！');
-                });
+                $post = [
+                    'studentno' => 2012052291,
+                    'username' => $record->user_name,
+                    'mobile' => $record->user_mobile,
+                    'msg' => $msg_content
+                ];
+                
+                // 发送短信模块，一条一毛钱
+                $url = 'http://202.116.13.44/sms/sendmessage.jsp';
+
+                $post_data = http_build_query($post);
+                $ch = curl_init() ;
+                curl_setopt($ch , CURLOPT_POST , 1);
+                curl_setopt($ch , CURLOPT_HEADER , 0);
+                curl_setopt($ch , CURLOPT_URL , $url);
+                curl_setopt($ch , CURLOPT_POSTFIELDS , $post_data) ;
+                $send_result = curl_exec ($ch) ;
+                //var_dump($send_result);
+                
                 DB::table('records')
                 ->where('id', intval($record->id))
                 ->update(['notified' => 1]);

@@ -31,7 +31,7 @@
           {{ date('Y-m-d H:i', $record->return_time) }}
       @elseif(($record->time+86400*60) < time())
            已逾期
-      @elseif(($record->time+86400*30) < time())
+      @elseif(($record->time+86400*50) < time())
            即将逾期
       @else
           未归还
